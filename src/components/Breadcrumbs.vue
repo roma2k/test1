@@ -1,6 +1,6 @@
 <template>
     <div class="breadCrumbsWrap">
-        <a href="/#">Главная</a> / Стоп-лист
+        <router-link to="/">Главная</router-link> / Стоп-лист
     </div>
 </template>
 <script>

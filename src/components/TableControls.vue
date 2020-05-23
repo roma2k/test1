@@ -8,13 +8,13 @@
                             <i class="fas fa-search"></i>
                         </label>
                     </div>
-                    <input type="text" placeholder="Искать" id="searchForm"/>
+                    <input type="text" placeholder="Искать" id="searchForm" v-model="search"/>
                 </div>
                 <button class="blueButton">НАЙТИ</button>
-                <button class="round redButton"><i class="fas fa-times-circle"></i></button>
+                <button class="round redButton" @click="clearSearchInput()"><i class="fas fa-times-circle"></i></button>
             </div>
             <div class="col-md-5 col-12 controlColumn pt-4">
-                <button class="greenButton">ДОБАВИТЬ</button>
+                <router-link to="/add/" tag="button" class="greenButton">ДОБАВИТЬ</router-link>
                 <button class="round lightBlueButton"><i class="fas fa-file-download"></i></button>
                 <button class="round purpleButton"><i class="fas fa-file-import"></i></button>
             </div>
@@ -26,6 +26,16 @@
 <script>
     export default {
         name: 'TableControls',
+        data() {
+            return{
+                search:'',
+            }
+        },
+        methods: {
+            clearSearchInput () {
+                this.search = ''
+            }
+        }
     }
 </script>
 

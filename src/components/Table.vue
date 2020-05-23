@@ -78,11 +78,5 @@
         background: #fff;
     }
 
-    .inRowControlBtns {
-        margin-right: 20px;
-    }
 
-    .editButton {
-        margin-right: 40px;
-    }
 </style>

@@ -4,7 +4,9 @@
             <breadcrumbs/>
         </div>
         <div class="container phoneTableWrap mt-3">
-            <Table/>
+            <router-view>
+                <Table/>
+            </router-view>
         </div>
 
 
@@ -13,13 +15,11 @@
 
 <script>
     import Breadcrumbs from '@/components/Breadcrumbs';
-    import Table from "@/components/Table";
 
     export default {
         name: 'App',
         components: {
-            Table,
-            Breadcrumbs,
+            Breadcrumbs
         }
     }
 </script>
@@ -62,15 +62,16 @@
     button.blueButton {
         background: #02738e;
     }
-    button.greenButton{
+
+    button.greenButton {
         background: #4caf50;
     }
 
-    button.lightBlueButton{
+    button.lightBlueButton {
         background: #2196f3;
     }
 
-    button.purpleButton{
+    button.purpleButton {
         background: #3f51b5;
     }
 
@@ -89,8 +90,7 @@
         border-bottom: 1px solid #afafaf;
         height: 35px;
     }
-    .deleteButton{
-        color:#f44336;
-    }
+
+
 
 </style>
