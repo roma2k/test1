@@ -1,28 +1,96 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div id="app" class="container-fluid">
+        <div class="container"><h5>Стоп-лист</h5>
+            <breadcrumbs/>
+        </div>
+        <div class="container phoneTableWrap mt-3">
+            <Table/>
+        </div>
+
+
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+    import Breadcrumbs from '@/components/Breadcrumbs';
+    import Table from "@/components/Table";
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+    export default {
+        name: 'App',
+        components: {
+            Table,
+            Breadcrumbs,
+        }
+    }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+    a {
+        color: #26869e;
+        text-decoration: underline;
+    }
+
+    .phoneTableWrap {
+        background: #fafafa;
+    }
+
+    button {
+        border-radius: 35px;
+        border: 0;
+        color: #fff;
+        box-shadow: 0px 4px 6px 0px #b9b6b6;
+        height: 40px;
+        padding: 6px 20px;
+        font-weight: 600;
+    }
+
+    button:hover {
+        opacity: .85;
+    }
+
+
+    button.round {
+        width: 40px;
+        height: 40px;
+        padding: 6px;
+    }
+
+    button.redButton {
+        background: #f44336;
+    }
+
+    button.blueButton {
+        background: #02738e;
+    }
+    button.greenButton{
+        background: #4caf50;
+    }
+
+    button.lightBlueButton{
+        background: #2196f3;
+    }
+
+    button.purpleButton{
+        background: #3f51b5;
+    }
+
+    input:focus, button:focus, select:focus {
+        outline: none;
+    }
+
+    button:active {
+        box-shadow: 0px 0px 6px 0px #b9b6b6;
+        opacity: 1;
+    }
+
+    input, select {
+        background: unset;
+        border: unset;
+        border-bottom: 1px solid #afafaf;
+        height: 35px;
+    }
+    .deleteButton{
+        color:#f44336;
+    }
+
 </style>
