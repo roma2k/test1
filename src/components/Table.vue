@@ -9,7 +9,7 @@
             </tr>
 
             </thead>
-            <phone-string v-for="phone in phones" :key="phone.id" :phone="phone.phone" :id="phone.id"></phone-string>
+            <phone-string v-for="phone in PHONES" :key="phone.id" :phone="phone.phone" :id="phone.id"></phone-string>
             <pagination :per-page="perPage" />
         </table>
     </div>
@@ -19,24 +19,21 @@
     import TableControls from "@/components/TableControls";
     import PhoneString from "@/components/PhoneString";
     import Pagination from "@/components/Pagination";
+    import {mapGetters} from "vuex";
+
     export default {
         name: 'Table',
         components: {PhoneString, TableControls, Pagination},
         data(){
             return{
-                phones:[
-                    {id:'123', phone:'79999899999'},
-                    {id:'431', phone:'79999893999'},
-                    {id:'151323', phone:'73419899999'},
-                    {id:'1235133', phone:'79349899999'},
-                    {id:'11323', phone:'79991199999'},
-                    {id:'123513', phone:'79299899999'},
-                    {id:'12313', phone:'79939899999'},
-                ],
                 perPage:25,
-
             }
+        },
+        computed: {
+            ...mapGetters(['PHONES'])
         }
+
+
     }
 </script>
 
