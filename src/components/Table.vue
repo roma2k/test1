@@ -9,7 +9,8 @@
             </tr>
 
             </thead>
-            <phone-string v-for="phone in PHONES" :key="phone.id" :phone="phone.phone" :id="phone.id"></phone-string>
+            <div v-if="GET_LOADER_STATE">LOADING</div>
+            <phone-string v-else v-for="phone in PHONES" :key="phone.id" :phone="phone.phone" :id="phone.id"></phone-string>
             <pagination :per-page="perPage" />
         </table>
     </div>
@@ -19,7 +20,7 @@
     import TableControls from "@/components/TableControls";
     import PhoneString from "@/components/PhoneString";
     import Pagination from "@/components/Pagination";
-    import {mapGetters} from "vuex";
+    import {mapActions, mapGetters} from "vuex";
 
     export default {
         name: 'Table',
@@ -30,8 +31,15 @@
             }
         },
         computed: {
-            ...mapGetters(['PHONES'])
+            ...mapGetters(['PHONES', 'GET_LOADER_STATE'])
+        },
+        methods: {
+            ...mapActions(['BIND_PHONES'])
+        },
+        mounted() {
+            this.BIND_PHONES()
         }
+
 
 
     }
