@@ -3,7 +3,7 @@
         <div class="container"><h5>Стоп-лист</h5>
             <breadcrumbs/>
         </div>
-        <div class="container phoneTableWrap mt-3">
+        <div class="container phoneTableWrap mt-3 pb-3">
             <router-view>
                 <Table/>
             </router-view>
@@ -74,7 +74,10 @@
     button.purpleButton {
         background: #3f51b5;
     }
-
+    button.greyButton {
+        color:#303030;
+        background: #f5f5f5;
+    }
     input:focus, button:focus, select:focus {
         outline: none;
     }

@@ -8,13 +8,13 @@
                     <button><i class="fas fa-chevron-right"></i></button>
                 </div>
                 <div>
-                    1-1 из 1
+                    1-1 из {{viewAllCount.allCount}}
                 </div>
                 <div>
-                    <select name="perPage" id="perPageInput">
+                    <select name="perPage" id="perPageInput" @change="e=>changeLimit(e.target.value)">
+                        <option value="3">3</option>
                         <option value="5">5</option>
                         <option value="25">25</option>
-                        <option value="50">50</option>
                     </select>
                 </div>
 
@@ -30,11 +30,31 @@
 
 
 <script>
+
+
+    import {mapGetters, mapMutations} from "vuex";
+
     export default {
-        props: [
-            'perPage'
-        ]
+        data() {
+            return {
+                showed: 0,
+                allCount: 0,
+                pages: 0,
+
+            }
+
+        },
+
+        methods: {
+            ...mapMutations(['changeLimit']),
+
+        },
+        computed: {
+            ...mapGetters(['viewAllCount'])
+        },
+
     }
+
 </script>
 
 <style scoped>
@@ -52,6 +72,7 @@
         flex-flow: row-reverse;
         align-items: baseline;
     }
+
     .tableBottomPagination div {
         margin-left: 30px;
     }
@@ -61,10 +82,14 @@
         .tableBottomPagination {
             flex-flow: row;
         }
+
         .tableBottomPagination div {
-            margin:0;
-            flex:1;
+            margin: 0;
+            flex: 1;
         }
-        .aboutPagesTitle{display: none}
+
+        .aboutPagesTitle {
+            display: none
+        }
     }
 </style>

@@ -1,58 +1,71 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-//import {firestoreAction, vuexfireMutations} from "vuexfire";
-import {db} from '@/db';
-//import {firestore} from "firebase";
+import {db} from "@/db";
+
+
 Vue.use(Vuex)
 
 let store = new Vuex.Store({
     state: {
-        phones: [],
-        isLoadingPhones: true,
+        phones: [
+            {id: 1, phone: '78945678945'},
+            {id: 21, phone: '78945678945'},
+            {id: 31, phone: '78945678945'},
+            {id: 13, phone: '78945678945'},
+            {id: 231, phone: '78945678945'},
+            {id: 313, phone: '78945678945'},
+
+        ],
+        limit: 3,
+        loading: true,
+        pages: 0,
 
     },
     mutations: {
-        //...vuexfireMutations,
-        changeLoading: (state, t) => {
-            state.isLoadingPhones = t;
+        loaded(state) {
+            state.loading = false;
         },
-        setPhones: (state, data) => {
-            state.phones = data;
+        changeLimit(state, payload) {
+            state.limit = parseInt(payload);
+        },
+        loadPhones(state, payload) {
+            state.phones = payload;
         }
+
     },
     actions: {
-        /*BIND_PHONES: firestoreAction(({ bindFirestoreRef , commit}) => {
-           bindFirestoreRef('phones', db.collection('phones')).then((b)=>{
-                setTimeout(()=>{console.log('123')}, 3000);
-                commit('changeLoading', false)
-                return b;
-            })
-
-        }),*/
-        BIND_PHONES({commit}) {
+        getBase: ({commit}) => {
 
             db.collection('phones').get().then(r => {
-                console.log();
                 let b = []
                 r.forEach(doc => {
                     b.push({id: doc.id, phone: doc.data().phone})
                 });
 
-                commit('setPhones', b)
-                commit('changeLoading', false)
+                commit('loadPhones', b)
+                commit('loaded')
             })
-
 
         }
     },
 
     getters: {
-        PHONES(state) {
-            return state.phones;
+        loading(state) {
+            return state.loading
         },
-        GET_LOADER_STATE(state) {
-            return state.isLoadingPhones;
-        }
+        viewLimit(state) {
+            return state.limit;
+        },
+        phones(state, getters) {
+            return state.phones.slice(0, getters.viewLimit);
+
+        },
+        viewAllCount(state, getters) {
+            return {
+                allCount: state.phones.length,
+                viewCount: getters.phones.length,
+            }
+        },
     }
 })
 
