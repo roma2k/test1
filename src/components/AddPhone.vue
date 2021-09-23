@@ -6,7 +6,7 @@
         </div>
         <div class="col-12 mt-4">
             <button class="greyButton" @click="$router.push('/')">
-                Назад
+                Назад123
             </button>
         </div>
     </div>
